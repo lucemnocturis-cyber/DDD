@@ -43,13 +43,11 @@ jobs:
         Copy-Item -Path build/bin/Release/DungeonDiceDuelists.exe -Destination DungeonDiceDuelists-Windows/
         Copy-Item -Path build/bin/assets -Destination DungeonDiceDuelists-Windows/assets -Recurse
         Copy-Item -Path README.md -Destination DungeonDiceDuelists-Windows/
-        
         $vcpkgRoot = $env:VCPKG_ROOT
         Copy-Item -Path "$vcpkgRoot/installed/x64-windows/bin/SDL2.dll" -Destination DungeonDiceDuelists-Windows/
         Copy-Item -Path "$vcpkgRoot/installed/x64-windows/bin/SDL2_image.dll" -Destination DungeonDiceDuelists-Windows/
         Copy-Item -Path "$vcpkgRoot/installed/x64-windows/bin/SDL2_ttf.dll" -Destination DungeonDiceDuelists-Windows/
         Copy-Item -Path "$vcpkgRoot/installed/x64-windows/bin/SDL2_mixer.dll" -Destination DungeonDiceDuelists-Windows/
-        
         Compress-Archive -Path DungeonDiceDuelists-Windows -DestinationPath DungeonDiceDuelists-Windows.zip
     
     - name: Upload Windows Build
@@ -86,15 +84,13 @@ jobs:
         cp build/bin/DungeonDiceDuelists DungeonDiceDuelists-Linux/
         cp -r build/bin/assets DungeonDiceDuelists-Linux/
         cp README.md DungeonDiceDuelists-Linux/
-        
         cat > DungeonDiceDuelists-Linux/launch.sh << 'EOF'
-#!/bin/bash
-cd "$(dirname "$0")"
-./DungeonDiceDuelists
-EOF
+        #!/bin/bash
+        cd "$(dirname "$0")"
+        ./DungeonDiceDuelists
+        EOF
         chmod +x DungeonDiceDuelists-Linux/launch.sh
         chmod +x DungeonDiceDuelists-Linux/DungeonDiceDuelists
-        
         tar -czf DungeonDiceDuelists-Linux.tar.gz DungeonDiceDuelists-Linux
     
     - name: Upload Linux Build
@@ -129,15 +125,13 @@ EOF
         cp build/bin/DungeonDiceDuelists DungeonDiceDuelists-macOS/
         cp -r build/bin/assets DungeonDiceDuelists-macOS/
         cp README.md DungeonDiceDuelists-macOS/
-        
         cat > DungeonDiceDuelists-macOS/launch.command << 'EOF'
-#!/bin/bash
-cd "$(dirname "$0")"
-./DungeonDiceDuelists
-EOF
+        #!/bin/bash
+        cd "$(dirname "$0")"
+        ./DungeonDiceDuelists
+        EOF
         chmod +x DungeonDiceDuelists-macOS/launch.command
         chmod +x DungeonDiceDuelists-macOS/DungeonDiceDuelists
-        
         tar -czf DungeonDiceDuelists-macOS.tar.gz DungeonDiceDuelists-macOS
     
     - name: Upload macOS Build
