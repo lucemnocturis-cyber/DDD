@@ -51,7 +51,7 @@ jobs:
         Compress-Archive -Path DungeonDiceDuelists-Windows -DestinationPath DungeonDiceDuelists-Windows.zip
     
     - name: Upload Windows Build
-      uses: actions/upload-artifact@v3
+      uses: actions/checkout@v4
       with:
         name: DungeonDiceDuelists-Windows
         path: DungeonDiceDuelists-Windows.zip
@@ -94,7 +94,7 @@ jobs:
         tar -czf DungeonDiceDuelists-Linux.tar.gz DungeonDiceDuelists-Linux
     
     - name: Upload Linux Build
-      uses: actions/upload-artifact@v3
+      uses: actions/checkout@v4
       with:
         name: DungeonDiceDuelists-Linux
         path: DungeonDiceDuelists-Linux.tar.gz
@@ -135,7 +135,7 @@ jobs:
         tar -czf DungeonDiceDuelists-macOS.tar.gz DungeonDiceDuelists-macOS
     
     - name: Upload macOS Build
-      uses: actions/upload-artifact@v3
+      uses: actions/checkout@v4
       with:
         name: DungeonDiceDuelists-macOS
         path: DungeonDiceDuelists-macOS.tar.gz
