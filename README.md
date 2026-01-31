@@ -1,7 +1,7 @@
 # Dungeon Dice Duelists
 
 A tactical roguelike strategy game combining Fire Emblem-style tactical grid combat, Slay the Spire-inspired roguelike progression, and dice-based unit summoning mechanics.
-
+ 
 ## Features
 
 - **Tactical Combat**: 13x19 grid battlefield with territory control
