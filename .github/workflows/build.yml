@@ -1,0 +1,147 @@
+name: Build Game Installers
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup vcpkg
+      uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: 'a42af01b72c28a8e1d7b48107b33e4f286a55ef6'
+    
+    - name: Install SDL2 dependencies
+      run: |
+        vcpkg install sdl2:x64-windows
+        vcpkg install sdl2-image:x64-windows
+        vcpkg install sdl2-ttf:x64-windows
+        vcpkg install sdl2-mixer:x64-windows
+        vcpkg integrate install
+    
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
+    
+    - name: Build Game
+      run: |
+        cd build
+        cmake --build . --config Release
+    
+    - name: Package Windows Build
+      run: |
+        mkdir DungeonDiceDuelists-Windows
+        Copy-Item -Path build/bin/Release/DungeonDiceDuelists.exe -Destination DungeonDiceDuelists-Windows/
+        Copy-Item -Path build/bin/assets -Destination DungeonDiceDuelists-Windows/assets -Recurse
+        Copy-Item -Path README.md -Destination DungeonDiceDuelists-Windows/
+        
+        $vcpkgRoot = $env:VCPKG_ROOT
+        Copy-Item -Path "$vcpkgRoot/installed/x64-windows/bin/SDL2.dll" -Destination DungeonDiceDuelists-Windows/
+        Copy-Item -Path "$vcpkgRoot/installed/x64-windows/bin/SDL2_image.dll" -Destination DungeonDiceDuelists-Windows/
+        Copy-Item -Path "$vcpkgRoot/installed/x64-windows/bin/SDL2_ttf.dll" -Destination DungeonDiceDuelists-Windows/
+        Copy-Item -Path "$vcpkgRoot/installed/x64-windows/bin/SDL2_mixer.dll" -Destination DungeonDiceDuelists-Windows/
+        
+        Compress-Archive -Path DungeonDiceDuelists-Windows -DestinationPath DungeonDiceDuelists-Windows.zip
+    
+    - name: Upload Windows Build
+      uses: actions/upload-artifact@v3
+      with:
+        name: DungeonDiceDuelists-Windows
+        path: DungeonDiceDuelists-Windows.zip
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake build-essential
+        sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev
+    
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release
+    
+    - name: Build Game
+      run: |
+        cd build
+        cmake --build . -j$(nproc)
+    
+    - name: Package Linux Build
+      run: |
+        mkdir DungeonDiceDuelists-Linux
+        cp build/bin/DungeonDiceDuelists DungeonDiceDuelists-Linux/
+        cp -r build/bin/assets DungeonDiceDuelists-Linux/
+        cp README.md DungeonDiceDuelists-Linux/
+        
+        cat > DungeonDiceDuelists-Linux/launch.sh << 'EOF'
+#!/bin/bash
+cd "$(dirname "$0")"
+./DungeonDiceDuelists
+EOF
+        chmod +x DungeonDiceDuelists-Linux/launch.sh
+        chmod +x DungeonDiceDuelists-Linux/DungeonDiceDuelists
+        
+        tar -czf DungeonDiceDuelists-Linux.tar.gz DungeonDiceDuelists-Linux
+    
+    - name: Upload Linux Build
+      uses: actions/upload-artifact@v3
+      with:
+        name: DungeonDiceDuelists-Linux
+        path: DungeonDiceDuelists-Linux.tar.gz
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: |
+        brew install cmake sdl2 sdl2_image sdl2_ttf sdl2_mixer
+    
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release
+    
+    - name: Build Game
+      run: |
+        cd build
+        cmake --build . -j$(sysctl -n hw.ncpu)
+    
+    - name: Package macOS Build
+      run: |
+        mkdir DungeonDiceDuelists-macOS
+        cp build/bin/DungeonDiceDuelists DungeonDiceDuelists-macOS/
+        cp -r build/bin/assets DungeonDiceDuelists-macOS/
+        cp README.md DungeonDiceDuelists-macOS/
+        
+        cat > DungeonDiceDuelists-macOS/launch.command << 'EOF'
+#!/bin/bash
+cd "$(dirname "$0")"
+./DungeonDiceDuelists
+EOF
+        chmod +x DungeonDiceDuelists-macOS/launch.command
+        chmod +x DungeonDiceDuelists-macOS/DungeonDiceDuelists
+        
+        tar -czf DungeonDiceDuelists-macOS.tar.gz DungeonDiceDuelists-macOS
+    
+    - name: Upload macOS Build
+      uses: actions/upload-artifact@v3
+      with:
+        name: DungeonDiceDuelists-macOS
+        path: DungeonDiceDuelists-macOS.tar.gz
