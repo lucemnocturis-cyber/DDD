@@ -1,0 +1,157 @@
+{
+  "sound_effects": {
+    "combat": {
+      "hit": {
+        "file": "sfx/hit.wav",
+        "volume": 0.8,
+        "category": "combat",
+        "description": "Basic melee hit"
+      },
+      "sword_slash": {
+        "file": "sfx/sword_slash.wav",
+        "volume": 0.7,
+        "category": "combat",
+        "description": "Sword swing/slash"
+      },
+      "magic_cast": {
+        "file": "sfx/magic_cast.wav",
+        "volume": 0.6,
+        "category": "combat",
+        "description": "Magic spell casting"
+      },
+      "explosion": {
+        "file": "sfx/explosion.wav",
+        "volume": 0.9,
+        "category": "combat",
+        "description": "Explosion/AOE damage"
+      },
+      "arrow_shoot": {
+        "file": "sfx/arrow_shoot.wav",
+        "volume": 0.7,
+        "category": "combat",
+        "description": "Arrow/projectile launch"
+      },
+      "shield_block": {
+        "file": "sfx/shield_block.wav",
+        "volume": 0.8,
+        "category": "combat",
+        "description": "Shield block/parry"
+      }
+    },
+    "character": {
+      "heal": {
+        "file": "sfx/heal.wav",
+        "volume": 0.6,
+        "category": "character",
+        "description": "Healing/restoration"
+      },
+      "death": {
+        "file": "sfx/death.wav",
+        "volume": 0.7,
+        "category": "character",
+        "description": "Unit death"
+      },
+      "level_up": {
+        "file": "sfx/level_up.wav",
+        "volume": 0.8,
+        "category": "character",
+        "description": "Level up/promotion"
+      },
+      "footstep": {
+        "file": "sfx/footstep.wav",
+        "volume": 0.4,
+        "category": "character",
+        "description": "Movement sound"
+      },
+      "power_up": {
+        "file": "sfx/power_up.wav",
+        "volume": 0.7,
+        "category": "character",
+        "description": "Buff/power-up"
+      }
+    },
+    "ui": {
+      "button_click": {
+        "file": "sfx/button_click.wav",
+        "volume": 0.5,
+        "category": "ui",
+        "description": "Button click"
+      },
+      "button_hover": {
+        "file": "sfx/button_hover.wav",
+        "volume": 0.3,
+        "category": "ui",
+        "description": "Button hover"
+      },
+      "menu_open": {
+        "file": "sfx/menu_open.wav",
+        "volume": 0.6,
+        "category": "ui",
+        "description": "Menu/panel open"
+      },
+      "menu_close": {
+        "file": "sfx/menu_close.wav",
+        "volume": 0.6,
+        "category": "ui",
+        "description": "Menu/panel close"
+      },
+      "error": {
+        "file": "sfx/error.wav",
+        "volume": 0.5,
+        "category": "ui",
+        "description": "Error/invalid action"
+      },
+      "coin_collect": {
+        "file": "sfx/coin_collect.wav",
+        "volume": 0.6,
+        "category": "ui",
+        "description": "Coin/gold collection"
+      }
+    },
+    "game": {
+      "dice_roll": {
+        "file": "sfx/dice_roll.wav",
+        "volume": 0.7,
+        "category": "game",
+        "description": "Dice rolling"
+      },
+      "victory": {
+        "file": "sfx/victory.wav",
+        "volume": 0.9,
+        "category": "game",
+        "description": "Victory fanfare"
+      }
+    }
+  },
+  "categories": {
+    "combat": {
+      "default_volume": 0.8,
+      "description": "Combat and attack sounds"
+    },
+    "character": {
+      "default_volume": 0.6,
+      "description": "Character action sounds"
+    },
+    "ui": {
+      "default_volume": 0.5,
+      "description": "User interface sounds"
+    },
+    "game": {
+      "default_volume": 0.7,
+      "description": "Game event sounds"
+    }
+  },
+  "settings": {
+    "master_volume": 1.0,
+    "sfx_volume": 1.0,
+    "sample_rate": 44100,
+    "channels": 1,
+    "format": "WAV"
+  },
+  "usage": {
+    "note": "All sounds are procedurally generated using wave synthesis",
+    "format": "44.1kHz, 16-bit, mono WAV",
+    "licensing": "Royalty-free (generated)",
+    "integration": "Use with SDL_mixer or similar audio library"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "font_type": "bitmap",
+  "available_fonts": {
+    "game_font": "bitmap_font_medium.png",
+    "title_font": "bitmap_font_title.png",
+    "small_font": "bitmap_font_small.png",
+    "large_font": "bitmap_font_large.png"
+  },
+  "default_font": "game_font",
+  "note": "Bitmap fonts generated as fallback. Replace with TTF when available."
+}

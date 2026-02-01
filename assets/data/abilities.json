@@ -1,0 +1,90 @@
+{
+  "abilities": {
+    "Fireball": {
+      "type": "attack",
+      "targetType": "area",
+      "cooldown": 2,
+      "range": 5,
+      "aoeRadius": 1,
+      "damage": "atk",
+      "description": "Launch a fireball dealing damage in a 2x2 area",
+      "effects": ["fire_particle", "screen_shake"],
+      "sound": "audio/sfx/fireball.wav"
+    },
+    "Ice Shard": {
+      "type": "attack",
+      "targetType": "singleEnemy",
+      "cooldown": 1,
+      "range": 4,
+      "damage": "atk+2",
+      "statusEffect": "freeze",
+      "statusDuration": 1,
+      "description": "Fire an ice shard that damages and freezes the target",
+      "sound": "audio/sfx/ice_shard.wav"
+    },
+    "Lightning": {
+      "type": "attack",
+      "targetType": "line",
+      "cooldown": 3,
+      "range": 6,
+      "damage": "atk",
+      "description": "Strike with lightning, hitting all enemies in a line",
+      "sound": "audio/sfx/lightning.wav"
+    },
+    "Shield Bash": {
+      "type": "attack",
+      "targetType": "singleEnemy",
+      "cooldown": 1,
+      "range": 1,
+      "damage": "atk",
+      "pushDistance": 1,
+      "description": "Strike with your shield, dealing damage and pushing the enemy back",
+      "sound": "audio/sfx/shield_bash.wav"
+    },
+    "Taunt": {
+      "type": "utility",
+      "targetType": "self",
+      "cooldown": 2,
+      "range": 3,
+      "description": "Force nearby enemies to attack you",
+      "sound": "audio/sfx/taunt.wav"
+    },
+    "Defensive Stance": {
+      "type": "buff",
+      "targetType": "self",
+      "cooldown": 3,
+      "defenseBonus": 5,
+      "duration": 2,
+      "description": "Increase defense by 5 for 2 turns",
+      "sound": "audio/sfx/defense_up.wav"
+    },
+    "Backstab": {
+      "type": "attack",
+      "targetType": "singleEnemy",
+      "cooldown": 2,
+      "range": 1,
+      "damage": "atk*3",
+      "description": "Deal triple damage when attacking from behind",
+      "sound": "audio/sfx/backstab.wav"
+    },
+    "Poison": {
+      "type": "debuff",
+      "targetType": "singleEnemy",
+      "cooldown": 1,
+      "range": 1,
+      "poisonDamage": 3,
+      "poisonDuration": 3,
+      "description": "Apply poison that deals 3 damage for 3 turns",
+      "sound": "audio/sfx/poison.wav"
+    },
+    "Heal": {
+      "type": "heal",
+      "targetType": "singleAlly",
+      "cooldown": 2,
+      "range": 3,
+      "healAmount": "atk/2",
+      "description": "Restore health to an ally",
+      "sound": "audio/sfx/heal.wav"
+    }
+  }
+}

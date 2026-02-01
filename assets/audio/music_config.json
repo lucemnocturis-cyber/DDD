@@ -1,0 +1,121 @@
+{
+  "music_tracks": {
+    "menu_theme": {
+      "file": "music/menu_theme.wav",
+      "duration": 32.0,
+      "tempo": 120,
+      "key": "A minor",
+      "mood": "mysterious, inviting",
+      "loop": true,
+      "volume": 0.6,
+      "category": "menu",
+      "description": "Main menu background music with gentle arpeggios"
+    },
+    "battle_normal": {
+      "file": "music/battle_normal.wav",
+      "duration": 32.0,
+      "tempo": 120,
+      "key": "E minor",
+      "mood": "energetic, intense",
+      "loop": true,
+      "volume": 0.7,
+      "category": "battle",
+      "description": "Normal battle music with driving rhythm"
+    },
+    "battle_boss": {
+      "file": "music/battle_boss.wav",
+      "duration": 48.0,
+      "tempo": 120,
+      "key": "D minor",
+      "mood": "dramatic, threatening",
+      "loop": true,
+      "volume": 0.8,
+      "category": "battle",
+      "description": "Boss battle music with heavy bass and dramatic strings"
+    },
+    "victory": {
+      "file": "music/victory.wav",
+      "duration": 16.0,
+      "tempo": 120,
+      "key": "C major",
+      "mood": "triumphant, uplifting",
+      "loop": false,
+      "volume": 0.75,
+      "category": "result",
+      "description": "Victory fanfare with triumphant progression"
+    },
+    "defeat": {
+      "file": "music/defeat.wav",
+      "duration": 16.0,
+      "tempo": 60,
+      "key": "A minor",
+      "mood": "somber, reflective",
+      "loop": false,
+      "volume": 0.6,
+      "category": "result",
+      "description": "Defeat music with descending melody"
+    },
+    "exploration": {
+      "file": "music/exploration.wav",
+      "duration": 16.0,
+      "tempo": 120,
+      "key": "G major",
+      "mood": "curious, light",
+      "loop": true,
+      "volume": 0.65,
+      "category": "exploration",
+      "description": "Shop/exploration music with playful melody"
+    },
+    "ambient": {
+      "file": "music/ambient.wav",
+      "duration": 112.0,
+      "tempo": 60,
+      "key": "D minor",
+      "mood": "atmospheric, contemplative",
+      "loop": true,
+      "volume": 0.55,
+      "category": "ambient",
+      "description": "Title screen ambient with sustained pads"
+    },
+    "tension": {
+      "file": "music/tension.wav",
+      "duration": 32.0,
+      "tempo": 120,
+      "key": "E minor",
+      "mood": "suspenseful, dangerous",
+      "loop": true,
+      "volume": 0.7,
+      "category": "tension",
+      "description": "Danger/tension music with pulsing bass"
+    }
+  },
+  "playlists": {
+    "main_menu": ["ambient", "menu_theme"],
+    "normal_battle": ["battle_normal", "tension"],
+    "boss_battle": ["battle_boss"],
+    "exploration": ["exploration", "menu_theme"],
+    "results": ["victory", "defeat"]
+  },
+  "dynamic_music": {
+    "battle_layers": {
+      "low_intensity": "tension",
+      "medium_intensity": "battle_normal",
+      "high_intensity": "battle_boss"
+    },
+    "crossfade_duration": 2.0,
+    "enable_adaptive": true
+  },
+  "settings": {
+    "master_volume": 1.0,
+    "music_volume": 0.8,
+    "sample_rate": 44100,
+    "channels": 2,
+    "format": "WAV"
+  },
+  "usage": {
+    "note": "All music is procedurally composed using algorithmic generation",
+    "format": "44.1kHz, 16-bit, stereo WAV",
+    "licensing": "Royalty-free (generated)",
+    "integration": "Use with SDL_mixer music functions"
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "game_balance": {
+    "version": "1.0.0",
+    "last_updated": "2026-01-30"
+  },
+  "combat": {
+    "damage_formula": "ATK - DEF",
+    "minimum_damage": 1,
+    "critical_hit": {
+      "base_chance": 0.05,
+      "luck_bonus_per_point": 0.01,
+      "multiplier": 1.5,
+      "max_chance": 0.50
+    },
+    "terrain_modifiers": {
+      "high_ground": 0.20,
+      "forest": -0.10,
+      "water": -0.20,
+      "lava": 0.15,
+      "sanctified": 0.25
+    },
+    "range_penalty": {
+      "melee_vs_ranged": 0.0,
+      "long_range_falloff": 0.05
+    }
+  },
+  "economy": {
+    "starting_gold": 100,
+    "gold_per_wave": {
+      "base": 50,
+      "scaling_multiplier": 1.1,
+      "boss_wave_bonus": 50
+    },
+    "dice_costs": {
+      "common": 20,
+      "uncommon": 30,
+      "rare": 50,
+      "epic": 80,
+      "legendary": 150
+    },
+    "reroll_cost": {
+      "base": 10,
+      "increment_per_reroll": 5,
+      "max_cost": 50
+    }
+  },
+  "difficulty_scaling": {
+    "per_wave": {
+      "enemy_health_multiplier": 1.15,
+      "enemy_damage_multiplier": 1.10,
+      "enemy_count_increase": 0.5
+    },
+    "boss_waves": [5, 10, 15, 20],
+    "boss_multipliers": {
+      "health": 3.0,
+      "damage": 1.5,
+      "abilities": 2.0
+    }
+  },
+  "unit_progression": {
+    "experience": {
+      "per_kill": 20,
+      "per_damage_dealt": 1,
+      "to_level_up": 100
+    },
+    "stat_growth": {
+      "hp": 5,
+      "atk": 2,
+      "def": 1,
+      "move": 0,
+      "range": 0
+    },
+    "promotion_tiers": [1, 2, 3, 4],
+    "promotion_stat_boost": {
+      "hp_multiplier": 1.5,
+      "atk_multiplier": 1.3,
+      "def_multiplier": 1.2
+    }
+  },
+  "dice_balance": {
+    "rarity_drop_rates": {
+      "common": 0.50,
+      "uncommon": 0.30,
+      "rare": 0.15,
+      "epic": 0.04,
+      "legendary": 0.01
+    },
+    "rarity_power_scaling": {
+      "common": 1.0,
+      "uncommon": 1.15,
+      "rare": 1.30,
+      "epic": 1.50,
+      "legendary": 1.80
+    },
+    "weighted_dice_bias": {
+      "heavy": [0.05, 0.10, 0.15, 0.20, 0.25, 0.25],
+      "lucky": [0.10, 0.10, 0.10, 0.15, 0.20, 0.35]
+    }
+  },
+  "abilities": {
+    "cooldown_turns": {
+      "common_ability": 3,
+      "rare_ability": 5,
+      "ultimate_ability": 8
+    },
+    "mana_costs": {
+      "low": 10,
+      "medium": 20,
+      "high": 30,
+      "ultimate": 50
+    },
+    "effect_durations": {
+      "buff": 3,
+      "debuff": 2,
+      "status": 4
+    }
+  },
+  "ai_behavior": {
+    "aggression_levels": {
+      "passive": 0.3,
+      "normal": 0.5,
+      "aggressive": 0.8,
+      "boss": 1.0
+    },
+    "target_priority": {
+      "low_health": 2.0,
+      "high_threat": 1.5,
+      "support_unit": 1.8,
+      "nearest": 1.0
+    },
+    "retreat_threshold": 0.2,
+    "ability_usage_chance": {
+      "normal": 0.3,
+      "boss": 0.6
+    }
+  },
+  "game_modes": {
+    "campaign": {
+      "total_waves": 20,
+      "continue_after_death": false,
+      "score_multiplier": 1.0
+    },
+    "endless": {
+      "starting_wave": 1,
+      "difficulty_cap": 50,
+      "score_multiplier": 1.5
+    },
+    "daily_challenge": {
+      "fixed_seed": true,
+      "time_limit_minutes": 30,
+      "score_multiplier": 2.0
+    },
+    "boss_rush": {
+      "only_bosses": true,
+      "waves_between_bosses": 0,
+      "score_multiplier": 2.5
+    }
+  },
+  "performance_targets": {
+    "fps_target": 60,
+    "frame_time_ms": 16.67,
+    "max_memory_mb": 100,
+    "max_load_time_ms": 2000
+  },
+  "tuning_notes": {
+    "damage_balance": "Aim for 4-6 hits to kill standard enemy in early game",
+    "economy_balance": "Player should afford 2-3 dice per wave",
+    "difficulty_curve": "Wave 1-5 easy, 6-10 medium, 11-15 hard, 16-20 very hard",
+    "boss_fights": "Should take 15-25 turns with full team",
+    "win_rate_target": "60-70% for players using good strategy"
+  }
+}
