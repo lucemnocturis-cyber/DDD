@@ -55,4 +55,35 @@ public:
     /**
      * Get random float in range [min, max] (alias for Range)
      */
+    static float GetFloat(float min, float max) {
+        return Range(min, max);
+    }
+    
+    /**
+     * Alias methods for compatibility
+     */
+    static int Int(int min, int max);
+    static float Float(float min, float max);
+    static bool Bool();
     static float Chance(float probability);
+    
+    /**
+     * Get random boolean with given probability of true
+     */
+    static bool GetBool(float probability = 0.5f) {
+        return Chance(probability);
+    }
+    
+    /**
+     * Roll dice (1 to sides)
+     */
+    static int RollDice(int sides = 6) {
+        return Range(1, sides);
+    }
+    
+private:
+    static std::mt19937 s_engine;
+    static bool s_seeded;
+};
+
+} // namespace DDD
