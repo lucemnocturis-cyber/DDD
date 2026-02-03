@@ -1,6 +1,6 @@
 #pragma once
-
 #include <random>
+#include <ctime>
 
 namespace DDD {
 
@@ -10,49 +10,49 @@ namespace DDD {
 class Random {
 public:
     /**
+     * Seed the random number generator with a specific value
+     */
+    static void Seed(unsigned int seed);
+    
+    /**
+     * Seed with current time
+     */
+    static void SeedWithTime();
+    
+    /**
      * Initialize the random number generator
      */
     static void Initialize(unsigned int seed = 0) {
         if (seed == 0) {
-            std::random_device rd;
-            s_engine.seed(rd());
+            SeedWithTime();
         } else {
-            s_engine.seed(seed);
+            Seed(seed);
         }
     }
     
     /**
+     * Get the random engine (auto-seeds if needed)
+     */
+    static std::mt19937& GetEngine();
+    
+    /**
      * Get random integer in range [min, max]
      */
-    static int GetInt(int min, int max) {
-        std::uniform_int_distribution<int> dist(min, max);
-        return dist(s_engine);
-    }
+    static int Range(int min, int max);
     
     /**
      * Get random float in range [min, max]
      */
-    static float GetFloat(float min, float max) {
-        std::uniform_real_distribution<float> dist(min, max);
-        return dist(s_engine);
+    static float Range(float min, float max);
+    
+    /**
+     * Get random integer in range [min, max] (alias for Range)
+     */
+    static int GetInt(int min, int max) {
+        return Range(min, max);
     }
     
     /**
-     * Get random boolean with given probability of true
+     * Get random float in range [min, max] (alias for Range)
      */
-    static bool GetBool(float probability = 0.5f) {
-        return GetFloat(0.0f, 1.0f) < probability;
-    }
-    
-    /**
-     * Roll dice (1 to sides)
-     */
-    static int RollDice(int sides = 6) {
-        return GetInt(1, sides);
-    }
-    
-private:
-    static std::mt19937 s_engine;
-};
-
-} // namespace DDD
+    static flo
