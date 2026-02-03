@@ -55,4 +55,4 @@ public:
     /**
      * Get random float in range [min, max] (alias for Range)
      */
-    static flo
+    static float Chance(float probability);
