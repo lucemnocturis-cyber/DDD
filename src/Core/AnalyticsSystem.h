@@ -215,7 +215,7 @@ private:
     AnalyticsSystem() = default;
     
     std::string GenerateSessionId() const;
-    std::string GenerateEventId() const;
+    std::string GenerateEventId();  // FIXED: Removed const
     uint64_t GetTimestamp() const;
     void QueueEvent(const AnalyticsEvent& event);
     void ProcessEventQueue();
@@ -244,7 +244,7 @@ private:
     std::queue<AnalyticsEvent> m_eventQueue;
     std::vector<AnalyticsEvent> m_recentEvents;
     float m_batchTimer = 0.0f;
-    int m_eventCounter = 0;
+    mutable int m_eventCounter = 0;  // FIXED: Added mutable
     static constexpr int MAX_RECENT_EVENTS = 100;
     
     // Funnels
