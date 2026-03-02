@@ -52,7 +52,7 @@ void AIController::ExecuteAction(std::shared_ptr<Unit> unit, const AIAction& act
             if (unit->HasMoved()) break;
             
             Position oldPos = unit->GetPosition();
-            board->MoveUnit(unit, action.targetPos);
+            board->MoveUnit(unit, action.targetPos.x, action.targetPos.y);
             unit->SetHasMoved(true);
             
             Logger::Info("AI: {} moves from ({},{}) to ({},{})",
