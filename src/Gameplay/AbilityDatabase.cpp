@@ -88,7 +88,7 @@ std::vector<Position> AbilityDatabase::GetValidTargets(const std::string& abilit
             // Check range
             if (dist > def->range) continue;
             
-            auto unit = board.GetUnitAt(pos);
+            auto unit = board.GetUnitAt(pos.x, pos.y);
             
             switch (def->targetType) {
                 case TargetType::SingleEnemy:
@@ -142,7 +142,7 @@ std::vector<Position> AbilityDatabase::GetAffectedCells(const std::string& abili
             for (int dy = -def->aoeRadius; dy <= def->aoeRadius; ++dy) {
                 if (std::abs(dx) + std::abs(dy) <= def->aoeRadius) {
                     Position aoe = {targetPos.x + dx, targetPos.y + dy};
-                    if (board.IsValidPosition(aoe) && aoe != targetPos) {
+                    if (board.IsValidPosition(aoe.x, aoe.y) && aoe != targetPos) {
                         cells.push_back(aoe);
                     }
                 }
@@ -159,7 +159,7 @@ std::vector<Position> AbilityDatabase::GetAffectedCells(const std::string& abili
         for (int i = 0; i < def->range; ++i) {
             current.x += dx;
             current.y += dy;
-            if (board.IsValidPosition(current)) {
+            if (board.IsValidPosition(current.x, current.y)) {
                 cells.push_back(current);
             }
         }
@@ -228,7 +228,7 @@ AbilityResult AbilityDatabase::ExecuteAbility(const std::string& abilityId,
     // Collect targets
     std::vector<Unit*> targets;
     for (const auto& pos : affectedCells) {
-        auto unit = board.GetUnitAt(pos);
+        auto unit = board.GetUnitAt(pos.x, pos.y);
         if (unit && !unit->IsDead()) {
             bool isEnemy = unit->GetOwner() != caster.GetOwner();
             
