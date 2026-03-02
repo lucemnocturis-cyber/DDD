@@ -80,8 +80,8 @@ std::vector<Position> AbilityDatabase::GetValidTargets(const std::string& abilit
     }
     
     // Search board for valid targets
-    for (int y = 0; y < board.GetHeight(); ++y) {
-        for (int x = 0; x < board.GetWidth(); ++x) {
+    for (int y = 0; y < 19; ++y) {  // Board height
+        for (int x = 0; x < 13; ++x) {  // Board width
             Position pos = {x, y};
             int dist = std::abs(x - casterPos.x) + std::abs(y - casterPos.y);
             
