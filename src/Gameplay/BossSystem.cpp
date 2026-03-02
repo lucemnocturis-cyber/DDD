@@ -293,7 +293,7 @@ std::vector<Position> BossSystem::CalculateAffectedCells(const BossAttack& attac
                 for (int dy = -1; dy <= 1; ++dy) {
                     if (dx == 0 && dy == 0) continue;
                     Position adj = {target.x + dx, target.y + dy};
-                    if (board.IsValidPosition(adj)) {
+                    if (board.IsValidPosition(adj.x, adj.y)) {
                         cells.push_back(adj);
                     }
                 }
@@ -306,7 +306,7 @@ std::vector<Position> BossSystem::CalculateAffectedCells(const BossAttack& attac
                 for (int dy = -attack.radius; dy <= attack.radius; ++dy) {
                     if (std::abs(dx) + std::abs(dy) <= attack.radius) {
                         Position aoe = {target.x + dx, target.y + dy};
-                        if (board.IsValidPosition(aoe)) {
+                        if (board.IsValidPosition(aoe.x, aoe.y)) {
                             cells.push_back(aoe);
                         }
                     }
@@ -324,7 +324,7 @@ std::vector<Position> BossSystem::CalculateAffectedCells(const BossAttack& attac
             for (int i = 0; i < attack.range; ++i) {
                 current.x += dx;
                 current.y += dy;
-                if (board.IsValidPosition(current)) {
+                if (board.IsValidPosition(current.x, current.y)) {
                     cells.push_back(current);
                 }
             }
@@ -377,7 +377,7 @@ std::vector<Position> BossSystem::GetThreatZone(Board& board) const {
         for (int dy = -maxRange; dy <= maxRange; ++dy) {
             if (std::abs(dx) + std::abs(dy) <= maxRange) {
                 Position threat = {bossPos.x + dx, bossPos.y + dy};
-                if (board.IsValidPosition(threat)) {
+                if (board.IsValidPosition(threat.x, threat.y)) {
                     zone.push_back(threat);
                 }
             }
