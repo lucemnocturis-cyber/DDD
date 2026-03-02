@@ -187,9 +187,9 @@ int BossSystem::SelectBestAttack(Board& board) {
     // Priority: AoE if multiple targets, summon if low minions, single target otherwise
     // Count player units
     int playerUnits = 0;
-    for (int y = 0; y < board.GetHeight(); ++y) {
-        for (int x = 0; x < board.GetWidth(); ++x) {
-            auto unit = board.GetUnitAt({x, y});
+    for (int y = 0; y < 19; ++y) {
+        for (int x = 0; x < 13; ++x) {
+            auto unit = board.GetUnitAt(x, y);
             if (unit && unit->GetOwner() == Owner::Player) {
                 playerUnits++;
             }
@@ -242,9 +242,9 @@ Position BossSystem::FindBestTarget(Board& board, const BossAttack& attack) {
     
     // Find player units
     std::vector<std::shared_ptr<Unit>> playerUnits;
-    for (int y = 0; y < board.GetHeight(); ++y) {
-        for (int x = 0; x < board.GetWidth(); ++x) {
-            auto unit = board.GetUnitAt({x, y});
+    for (int y = 0; y < 19; ++y) {
+        for (int x = 0; x < 13; ++x) {
+            auto unit = board.GetUnitAt(x, y);
             if (unit && unit->GetOwner() == Owner::Player && !unit->IsDead()) {
                 playerUnits.push_back(unit);
             }
@@ -445,22 +445,22 @@ void BossSystem::Render(Renderer& renderer, int screenWidth, int screenHeight) {
     float glow = (std::sin(m_titleGlow) + 1.0f) * 0.3f;
     nameColor.r = std::min(255, static_cast<int>(nameColor.r + glow * 50));
     
-    renderer.GetTextRenderer()->RenderText(bossName, barX + barWidth / 2 - 60, barY - 25, 
+    renderer.GetTextRenderer().RenderText(bossName, barX + barWidth / 2 - 60, barY - 25, 
                                            FontSize::Large, nameColor);
     
     SDL_Color titleColor = {200, 180, 150, 255};
-    renderer.GetTextRenderer()->RenderText(bossTitle, barX + barWidth / 2 - 80, barY + barHeight + 5, 
+    renderer.GetTextRenderer().RenderText(bossTitle, barX + barWidth / 2 - 80, barY + barHeight + 5, 
                                            FontSize::Small, titleColor);
     
     // HP text
     std::string hpText = std::to_string(stats.hp) + " / " + std::to_string(stats.maxHp);
-    renderer.GetTextRenderer()->RenderText(hpText, barX + barWidth / 2 - 40, barY + 5, 
+    renderer.GetTextRenderer().RenderText(hpText, barX + barWidth / 2 - 40, barY + 5, 
                                            FontSize::Medium, {255, 255, 255, 255});
     
     // Enrage indicator
     if (m_activeBoss.isEnraged) {
         SDL_Color enrageColor = {255, 100, 100, 255};
-        renderer.GetTextRenderer()->RenderText("ENRAGED!", barX + barWidth + 10, barY + 5, 
+        renderer.GetTextRenderer().RenderText("ENRAGED!", barX + barWidth + 10, barY + 5, 
                                                FontSize::Medium, enrageColor);
     }
     
@@ -476,8 +476,8 @@ void BossSystem::Render(Renderer& renderer, int screenWidth, int screenHeight) {
         SDL_Color announceColor = {255, 220, 100, a};
         int textX = screenWidth / 2 - 150;
         int textY = screenHeight / 2 - 15;
-        renderer.GetTextRenderer()->RenderText(m_activeBoss.phaseAnnouncement, textX, textY, 
-                                               FontSize::XLarge, announceColor);
+        renderer.GetTextRenderer().RenderText(m_activeBoss.phaseAnnouncement, textX, textY, 
+                                               FontSize::Large, announceColor);
     }
 }
 
