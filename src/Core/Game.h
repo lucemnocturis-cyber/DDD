@@ -79,8 +79,8 @@ public:
     /**
      * Change state with transition effect
      */
-    void TransitionToState(GameStateType newState, TransitionType transition = TransitionType::Fade);
-    
+    void TransitionToState(GameStateType newState, TransitionType transition);
+    void TransitionToState(GameStateType newState);  // Overload with no transition    
     /**
      * Push a state onto the stack (for overlays like pause menu)
      */
