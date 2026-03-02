@@ -615,7 +615,7 @@ std::string AnalyticsSystem::GenerateSessionId() const {
     return ss.str();
 }
 
-std::string AnalyticsSystem::GenerateEventId() const {
+std::string AnalyticsSystem::GenerateEventId() {
     return m_currentSession.sessionId + "_" + std::to_string(m_eventCounter++);
 }
 
