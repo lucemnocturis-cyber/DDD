@@ -1,3 +1,4 @@
+#include "../UI/UIManager.h"
 #include "Engine.h"
 #include "Game.h"
 #include "ResourceManager.h"
